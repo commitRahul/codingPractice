@@ -28,8 +28,9 @@ func NewTruckManager() truckManager {
 	}
 }
 
-func (t *truckManager) AddTruck(id string, cargo int) {
+func (t *truckManager) AddTruck(id string, cargo int) error {
 	t.trucks[id] = &Truck{ID: id, Cargo: cargo}
+	return nil
 }
 
 func (t *truckManager) GetTruck(id string) (*Truck, error) {
@@ -40,14 +41,16 @@ func (t *truckManager) GetTruck(id string) (*Truck, error) {
 	return truck, nil
 }
 
-func (t *truckManager) RemoveTruck(id string) {
+func (t *truckManager) RemoveTruck(id string) error {
 	delete(t.trucks, id)
+	return nil
 }
 
-func (t *truckManager) UpdateTruckCargo(id string, cargo int) {
+func (t *truckManager) UpdateTruckCargo(id string, cargo int) error {
 	if truck, exists := t.trucks[id]; exists {
 		truck.Cargo = cargo
 	}
+	return nil
 }
 
 func main() {
